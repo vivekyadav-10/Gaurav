@@ -1,0 +1,26 @@
+<!-- {% load static %} -->
+
+<div class="form-group">
+    <br>
+    <label for="password">Password:</label>
+    <br>
+    <div style="justify-content: center; display: grid; ">
+        <div style="">
+    {% for row in p_images %}
+
+    <div class="row no-gutters" style="width: 100%">
+        {% for col in row %}
+        <div class="col-4 no-gutters">
+            <!-- {{ forloop.parentloop.counter0  }}-{{ forloop.counter0  }} -->
+            <img src='{% static 'images/pwd/' %}{{ col }}.png' alt=" img" style=" border: 4px solid #3bf2ff;
+                height: 55px;
+                width: 55px;" id="{{ forloop.parentloop.counter0  }}{{ forloop.counter0  }}"
+                onclick="onSelect({{forloop.parentloop.counter0}}, {{forloop.counter0}})">
+        </div>
+        {% endfor %}
+    </div>
+    <div style="padding-bottom: 8px;"></div>
+    {% endfor %}
+            </div>
+    </div>
+</div>

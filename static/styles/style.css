@@ -1,0 +1,43 @@
+/* @import url(https://fonts.googleapis.com/css?family=McLaren&display=swap); */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+
+body {
+    font-family: 'McLaren';
+    font-style: normal;
+    font-weight: 200;
+    margin: 0px;
+    background: #3bf2ff;
+}
+.container {
+    background: white;
+    margin: 10px auto;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
+    position: relatfa-inverse;
+    overflow: auto;
+    width: 550px;
+    height: 625px;
+}
+.sticky-top {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    font-weight: bold;
+        margin: 0;
+}
+.mb-4, .my-4 {
+    margin-bottom: 0;
+}
+.border-bottom {
+    border-bottom: 0px;
+}
+.form-group {
+    margin-bottom: 0;
+}
+.ma-auto {
+    padding: 0px;
+}
+row no-gutters {
+    width: 60%;
+}

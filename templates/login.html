@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login Page
+{% endblock %}
+
+
+{% block content %}
+<div class="mx-auto" style="width: 400px; padding: 0px">
+    <div class="content-section">
+        <form class="" action="" method="post" id="post-form">
+            {% csrf_token %}
+            <br>
+            <fieldset class="form-group">
+                <legend class="">Login</legend>
+            </fieldset>
+            <br>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" required>
+            </div>
+
+            {% include 'pwd.html' %}
+
+            <br>
+
+            <div class="form-group" style="justify-content: center; display: grid; margin: 0 20px 0 0;">
+                <button type="submit" class="btn btn-outline-info">Sign In</button>
+            </div>
+        </form>
+        <div class=" pt-3">
+            <small class="text-muted">
+                Forgot password? <a href="{% url 'reset' %}" class="ml-2">Click here</a>
+            </small>
+        </div>
+        <div class=" pt-3 style="justify-content: center; display: grid; margin: 0 50px 0 100;">
+            <small class="text-muted">
+                Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
+            </small>
+        </div>
+    </div>
+</div>
+
+<script>
+    //Password
+
+    var gpwd_set = new Set();
+
+    function onSelect(r, c) {
+        var res = r.toString() + c.toString();
+        var url = document.getElementById(res).src;
+        var filename = url.split('\\').pop().split('/').pop();
+        var ans=filename.slice(0,filename.length-4);
+        if (gpwd_set.has(ans)) {
+            console.log('true');
+            gpwd_set.delete(ans);
+        } else {
+            gpwd_set.add(ans);
+            document.getElementById(res).style.border = "2px solid red";
+        }
+
+        console.log(gpwd_set);
+    }
+
+    function post(path, params, method = 'post') {
+
+        const form = document.getElementById('post-form');
+        form.method = method;
+        form.action = path;
+
+        for (const key in params) {
+            if (params.hasOwnProperty(key)) {
+                const hiddenField = document.createElement('input');
+                hiddenField.type = 'hidden';
+                hiddenField.name = key;
+                hiddenField.value = params[key];
+
+                form.appendChild(hiddenField);
+            }
+        }
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+
+    // Submit
+    var form = document.getElementById('post-form');
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        console.log("form submitted!");
+        post('', {
+            username: document.getElementById('username').value,
+            password: Array.from(gpwd_set),
+        })
+    });
+</script>
+{% endblock %}
